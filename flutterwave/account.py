@@ -1,14 +1,12 @@
-from utils import Utils
 
-class Account(Utils):
+class Account(object):
     """Flutterwave Accounts module
 
         Provides methods for running transactions between accounts
     """
 
-    def __init__(self, apiKey, merchantKey):
-        self.apiKey = apiKey
-        self.merchantKey = merchantKey
+    def __init__(self, util):
+        self.util = util
 
     
     def tokenize(self, accountNumber):
@@ -17,10 +15,10 @@ class Account(Utils):
         requestData.accountNumber  -> Account number to tokenize
         '"""
         payload = {
-            "accountNumber": super(Account, self).encrypData(self.apiKey, accountNumber),
-            "merchantid": self.merchantKey
+            "accountNumber": self.util.encryptData(accountNumber),
+            "merchantid": self.util.merchantKey
         }
-        return super(Account, self).sendRequest(Utils.accountTokenizeRoute, payload);
+        return self.util.sendRequest(self.util.accountTokenizeRoute, payload);
 
 
     def validate(self, requestData):
@@ -33,14 +31,14 @@ class Account(Utils):
         requestData.narration     -> Transaction description
         '"""
         payload = {
-            "merchantid": self.merchantKey,
-            "accountNumber": super(Account, self).encrypData(self.apiKey, requestData['accountNumber']),
-            "otp": super(Account, self).encrypData(self.apiKey, requestData['otp']),
-            "reference": super(Account, self).encrypData(self.apiKey, requestData['ref']),
-            "billingamount": super(Account, self).encrypData(self.apiKey, requestData['amount']),
-            "narration": super(Account, self).encrypData(self.apiKey, requestData['narration']),
+            "merchantid": self.util.merchantKey,
+            "accountNumber": self.util.encryptData(requestData['accountNumber']),
+            "otp": self.util.encryptData(requestData['otp']),
+            "reference": self.util.encryptData(requestData['ref']),
+            "billingamount": self.util.encryptData(requestData['amount']),
+            "narration": self.util.encryptData(requestData['narration']),
         }
-        return super(Account, self).sendRequest(Utils.accountValidateRoute, payload);
+        return self.util.sendRequest(self.util.accountValidateRoute, payload);
 
 
     def charge(self, requestData):
@@ -51,12 +49,12 @@ class Account(Utils):
         requestData.narration -> Transaction description
         '"""
         payload = {
-            "merchantid": self.merchantKey,
-            "accountToken": super(Account, self).encrypData(self.apiKey, requestData['token']),
-            "billingamount": super(Account, self).encrypData(self.apiKey, requestData['amount']),
-            "debitnarration": super(Account, self).encrypData(self.apiKey, requestData['narration'])
+            "merchantid": self.util.merchantKey,
+            "accountToken": self.util.encryptData(requestData['token']),
+            "billingamount": self.util.encryptData(requestData['amount']),
+            "debitnarration": self.util.encryptData(requestData['narration'])
         }
-        return super(Account, self).sendRequest(Utils.accountChargeRoute, payload);
+        return self.util.sendRequest(self.util.accountChargeRoute, payload);
 
     
     

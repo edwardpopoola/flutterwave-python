@@ -1,12 +1,11 @@
 from utils import Utils
 
-class Ip(Utils):
+class Ip(object):
     """Flutterwave IP class
     """
 
-    def __init__(self, apiKey, merchantKey):
-        self.apiKey = apiKey
-        self.merchantKey = merchantKey
+    def __init__(self, util):
+        self.util = util
 
 
     def check(self, ipAddress):
@@ -17,4 +16,4 @@ class Ip(Utils):
         payload = {
             'ip': ipAddress
         }
-        return super(Ip, self).sendRequest(Utils.ipCheckRoute, payload)
+        return self.util.sendRequest(self.util.ipCheckRoute, payload)

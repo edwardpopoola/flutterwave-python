@@ -6,9 +6,8 @@ class Card(Utils):
         Provides methods for charging a credit / debit card
     """
 
-    def __init__(self, apiKey, merchantKey):
-        self.apiKey = apiKey
-        self.merchantKey = merchantKey
+    def __init__(self, util):
+        self.util = util
 
 
     def tokenize(self, requestData):
@@ -24,16 +23,16 @@ class Card(Utils):
         bvn             -> (Optional) User BVN, required only for authModel=BVN
         '"""
         payload = {
-            "merchantid": self.merchantKey,
-            "validateoption": super(Card, self).encrypData(self.apiKey, requestData['validateOption']),
-            "authmodel": super(Card, self).encrypData(self.apiKey, requestData['authModel']),
-            "cardno": super(Card, self).encrypData(self.apiKey, requestData['cardNumber']),
-            "cvv": super(Card, self).encrypData(self.apiKey, requestData['cvv']),
-            "expirymonth": super(Card, self).encrypData(self.apiKey, requestData['expiryMonth']),
-            "expiryyear": super(Card, self).encrypData(self.apiKey, requestData['expiryYear']),
-            "bvn": super(Card, self).encrypData(self.apiKey, requestData['bvn'])
+            "merchantid": self.util.merchantKey,
+            "validateoption": self.util.encryptData(requestData['validateOption']),
+            "authmodel": self.util.encryptData(requestData['authModel']),
+            "cardno": self.util.encryptData(requestData['cardNumber']),
+            "cvv": self.util.encryptData(requestData['cvv']),
+            "expirymonth": self.util.encryptData(requestData['expiryMonth']),
+            "expiryyear": self.util.encryptData(requestData['expiryYear']),
+            "bvn": self.util.encryptData(requestData['bvn'])
         }
-        return super(Card, self).sendRequest(Utils.cardTokenizeRoute, payload);
+        return self.util.sendRequest(self.util.cardTokenizeRoute, payload);
 
 
     def charge(self, requestData):
@@ -53,26 +52,26 @@ class Card(Utils):
         bvn             -> (Optional) User BVN, required only for authModel=BVN
         '"""
         payload = {
-            "merchantid": self.merchantKey,
-            "amount": super(Card, self).encrypData(self.apiKey, requestData['amount']),
-            "authmodel": super(Card, self).encrypData(self.apiKey, requestData['authModel']),
-            "cardno": super(Card, self).encrypData(self.apiKey, requestData['cardNumber']),
-            "currency": super(Card, self).encrypData(self.apiKey, requestData['currency']),
-            "custid":  super(Card, self).encrypData(self.apiKey, requestData['customerID']),
-            "cvv": super(Card, self).encrypData(self.apiKey, requestData['cvv']),
-            "expirymonth": super(Card, self).encrypData(self.apiKey, requestData['expiryMonth']),
-            "expiryyear": super(Card, self).encrypData(self.apiKey, requestData['expiryYear']),
-            "narration": super(Card, self).encrypData(self.apiKey, requestData['narration']),
-            "responseurl": super(Card, self).encrypData(self.apiKey, requestData['responseUrl']),
+            "merchantid": self.util.merchantKey,
+            "amount": self.util.encryptData(requestData['amount']),
+            "authmodel": self.util.encryptData(requestData['authModel']),
+            "cardno": self.util.encryptData(requestData['cardNumber']),
+            "currency": self.util.encryptData(requestData['currency']),
+            "custid":  self.util.encryptData(requestData['customerID']),
+            "cvv": self.util.encryptData(requestData['cvv']),
+            "expirymonth": self.util.encryptData(requestData['expiryMonth']),
+            "expiryyear": self.util.encryptData(requestData['expiryYear']),
+            "narration": self.util.encryptData(requestData['narration']),
+            "responseurl": self.util.encryptData(requestData['responseUrl']),
         }
 
         if('bvn' in requestData):
-            payload["bvn"] = super(Card, self).encrypData(self.apiKey, requestData['bvn'])
+            payload["bvn"] = self.util.encryptData(requestData['bvn'])
 
         if('cardtype' in requestData):
-            payload["cardtype"] = super(Card, self).encrypData(self.apiKey, requestData['cardtype']),
+            payload["cardtype"] = self.util.encryptData(requestData['cardtype']),
 
-        return super(Card, self).sendRequest(Utils.cardChargeRoute, payload);
+        return self.util.sendRequest(self.util.cardChargeRoute, payload);
 
 
     def chargeWithToken(self, requestData):
@@ -86,18 +85,18 @@ class Card(Utils):
         cardtype        -> (Optional) Card type - Diamound
         '"""
         payload = {
-            "merchantid": self.merchantKey,
-            "amount": super(Card, self).encrypData(self.apiKey, requestData['amount']),
-            "currency": super(Card, self).encrypData(self.apiKey, requestData['currency']),
-            "custid": super(Card, self).encrypData(self.apiKey, requestData['customerID']),
-            "narration": super(Card, self).encrypData(self.apiKey, requestData['narration']),
-            "chargetoken": super(Card, self).encrypData(self.apiKey, requestData['cardToken'])
+            "merchantid": self.util.merchantKey,
+            "amount": self.util.encryptData(requestData['amount']),
+            "currency": self.util.encryptData(requestData['currency']),
+            "custid": self.util.encryptData(requestData['customerID']),
+            "narration": self.util.encryptData(requestData['narration']),
+            "chargetoken": self.util.encryptData(requestData['cardToken'])
         }
 
         if('cardtype' in requestData):
-            payload["cardtype"] = super(Card, self).encrypData(self.apiKey, requestData['cardtype']),
+            payload["cardtype"] = self.util.encryptData(requestData['cardtype']),
 
-        return super(Card, self).sendRequest(Utils.cardChargeRoute, payload);
+        return self.util.sendRequest(self.util.cardChargeRoute, payload);
 
 
     def validate(self, requestData):
@@ -108,15 +107,15 @@ class Card(Utils):
         cardtype                 -> (Optional) Card type - Diamound
         '"""
         payload = {
-            "merchantid": self.merchantKey,
-            "otp": super(Card, self).encrypData(self.apiKey, requestData['otp']),
-            "otptransactionidentifier": super(Card, self).encrypData(self.apiKey, requestData['otpTransactionIdentifier']),
+            "merchantid": self.util.merchantKey,
+            "otp": self.util.encryptData(requestData['otp']),
+            "otptransactionidentifier": self.util.encryptData(requestData['otpTransactionIdentifier']),
         }
 
         if('cardtype' in requestData):
-            payload["cardtype"] = super(Card, self).encrypData(self.apiKey, requestData['cardtype']),
+            payload["cardtype"] = self.util.encryptData(requestData['cardtype']),
 
-        return super(Card, self).sendRequest(Utils.cardValidateRoute, payload);
+        return self.util.sendRequest(self.util.cardValidateRoute, payload);
 
 
     def preauth(self, requestData):
@@ -127,12 +126,12 @@ class Card(Utils):
         currency        -> Transaction currency
         '"""
         payload = {
-            "merchantid": self.merchantKey,
-            "amount": super(Card, self).encrypData(self.apiKey, requestData['amount']),
-            "currency": super(Card, self).encrypData(self.apiKey, requestData['currency']),
-            "chargetoken": super(Card, self).encrypData(self.apiKey, requestData['cardToken'])
+            "merchantid": self.util.merchantKey,
+            "amount": self.util.encryptData(requestData['amount']),
+            "currency": self.util.encryptData(requestData['currency']),
+            "chargetoken": self.util.encryptData(requestData['cardToken'])
         }
-        return super(Card, self).sendRequest(Utils.cardPreauthRoute, payload);
+        return self.util.sendRequest(self.util.cardPreauthRoute, payload);
 
 
     def capture(self, requestData):
@@ -145,14 +144,14 @@ class Card(Utils):
         authorizeID     -> Authorize ID from a preauthorize request
         '"""
         payload = {
-            "merchantid": self.merchantKey,
-            "amount": super(Card, self).encrypData(self.apiKey, requestData['amount']),
-            "currency": super(Card, self).encrypData(self.apiKey, requestData['currency']),
-            "trxreference": super(Card, self).encrypData(self.apiKey, requestData['transactionRef']),
-            "trxauthorizeid": super(Card, self).encrypData(self.apiKey, requestData['authorizeID']),
+            "merchantid": self.util.merchantKey,
+            "amount": self.util.encryptData(requestData['amount']),
+            "currency": self.util.encryptData(requestData['currency']),
+            "trxreference": self.util.encryptData(requestData['transactionRef']),
+            "trxauthorizeid": self.util.encryptData(requestData['authorizeID']),
         }
 
-        return super(Card, self).sendRequest(Utils.cardCaptureRoute, payload);
+        return self.util.sendRequest(self.util.cardCaptureRoute, payload);
 
 
     def refund(self, requestData):
@@ -165,13 +164,13 @@ class Card(Utils):
         authorizeID     -> Authorize ID from a preauthorize request
         '"""
         payload = {
-            "merchantid": self.merchantKey,
-            "amount": super(Card, self).encrypData(self.apiKey, requestData['amount']),
-            "currency": super(Card, self).encrypData(self.apiKey, requestData['currency']),
-            "trxreference": super(Card, self).encrypData(self.apiKey, requestData['transactionRef']),
-            "trxauthorizeid": super(Card, self).encrypData(self.apiKey, requestData['authorizeID']),
+            "merchantid": self.util.merchantKey,
+            "amount": self.util.encryptData(requestData['amount']),
+            "currency": self.util.encryptData(requestData['currency']),
+            "trxreference": self.util.encryptData(requestData['transactionRef']),
+            "trxauthorizeid": self.util.encryptData(requestData['authorizeID']),
         }
-        return super(Card, self).sendRequest(Utils.cardRefundRoute, payload);
+        return self.util.sendRequest(self.util.cardRefundRoute, payload);
 
 
     def void(self, requestData):
@@ -184,12 +183,12 @@ class Card(Utils):
         authorizeID     -> Authorize ID from a preauthorize request
         '"""
         payload = {
-            "merchantid": self.merchantKey,
-            "amount": super(Card, self).encrypData(self.apiKey, requestData['amount']),
-            "currency": super(Card, self).encrypData(self.apiKey, requestData['currency']),
-            "trxreference": super(Card, self).encrypData(self.apiKey, requestData['transactionRef']),
-            "trxauthorizeid": super(Card, self).encrypData(self.apiKey, requestData['authorizeID']),
+            "merchantid": self.util.merchantKey,
+            "amount": self.util.encryptData(requestData['amount']),
+            "currency": self.util.encryptData(requestData['currency']),
+            "trxreference": self.util.encryptData(requestData['transactionRef']),
+            "trxauthorizeid": self.util.encryptData(requestData['authorizeID']),
         }
-        return super(Card, self).sendRequest(Utils.cardVoidRoute, payload);
+        return self.util.sendRequest(self.util.cardVoidRoute, payload);
 
 

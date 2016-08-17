@@ -4,9 +4,8 @@ class Bin(Utils):
     """Flutterwave BIN class
     """
 
-    def __init__(self, apiKey, merchantKey):
-        self.apiKey = apiKey
-        self.merchantKey = merchantKey
+    def __init__(self, util):
+        self.util = util
 
 
     def check(self, cardBin):
@@ -17,4 +16,4 @@ class Bin(Utils):
         payload = {
             'card6': cardBin
         }
-        return super(Bin, self).sendRequest(Utils.binCheckRoute, payload)
+        return self.util.sendRequest(self.util.binCheckRoute, payload)

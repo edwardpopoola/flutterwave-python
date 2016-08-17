@@ -8,34 +8,49 @@ import hashlib
 class Utils(object):
     """Flutterwave Utility Class provides common functionalities for extending classes"""
 
-    # Service routes
-    baseUrl = "http://staging1flutterwave.co:8080"
 
-    ipCheckRoute = "/pwc/rest/fw/ipcheck/"
-    binCheckRoute = "/pwc/rest/fw/check/"
-    disburseSendRoute = "/pwc/rest/pay/send"
+    def __init__(self, apiKey, merchantKey):
+        # API credentials
+        self.apiKey = apiKey
+        self.merchantKey = merchantKey
 
-    bvnVerifyRoute = "/pwc/rest/bvn/verify/"
-    bvnValidateRoute = "/pwc/rest/bvn/validate/"
-    bvnResendOTPRoute = "/pwc/rest/bvn/resendotp/"
+        # BaseUrl
+        self.baseUrl = "http://staging1flutterwave.co:8080"
 
-    accountTokenizeRoute = "/pwc/rest/recurrent/account"
-    accountValidateRoute = "/pwc/rest/recurrent/account/validate"
-    accountChargeRoute = "/pwc/rest/recurrent/account/charge"
+        # Routes
+        self.ipCheckRoute = "/pwc/rest/fw/ipcheck/"
+        self.binCheckRoute = "/pwc/rest/fw/check/"
+        self.disburseSendRoute = "/pwc/rest/pay/send"
+        self.bvnVerifyRoute = "/pwc/rest/bvn/verify/"
+        self.bvnValidateRoute = "/pwc/rest/bvn/validate/"
+        self.bvnResendOTPRoute = "/pwc/rest/bvn/resendotp/"
+        self.accountTokenizeRoute = "/pwc/rest/recurrent/account"
+        self.accountValidateRoute = "/pwc/rest/recurrent/account/validate"
+        self.accountChargeRoute = "/pwc/rest/recurrent/account/charge"
+        self.cardTokenizeRoute = "/pwc/rest/card/mvva/tokenize"
+        self.cardChargeRoute = "/pwc/rest/card/mvva/pay"
+        self.cardValidateRoute = "/pwc/rest/card/mvva/pay/validate"
+        self.cardPreauthRoute = "/pwc/rest/card/mvva/preauthorize"
+        self.cardCaptureRoute = "/pwc/rest/card/mvva/capture"
+        self.cardRefundRoute = "/pwc/rest/card/mvva/refund"
+        self.cardVoidRoute = "/pwc/rest/card/mvva/void"
 
-    cardTokenizeRoute = "/pwc/rest/card/mvva/tokenize"
-    cardChargeRoute = "/pwc/rest/card/mvva/pay"
-    cardValidateRoute = "/pwc/rest/card/mvva/pay/validate"
-    cardPreauthRoute = "/pwc/rest/card/mvva/preauthorize"
-    cardCaptureRoute = "/pwc/rest/card/mvva/capture"
-    cardRefundRoute = "/pwc/rest/card/mvva/refund"
-    cardVoidRoute = "/pwc/rest/card/mvva/void"
+        # State
+        self.debug = False
 
 
-    def encrypData(self, key, plainText):
+
+    def setBaseUrl(self, url):
+        self.baseUrl = url
+
+    def enableDebug(self, enable):
+        self.debug = enable
+
+
+    def encryptData(self, plainText):
         """Provides encryption for plaintext content required in request data."""
 
-        md5Key = hashlib.md5(key.encode("utf-8")).digest()
+        md5Key = hashlib.md5(self.apiKey.encode("utf-8")).digest()
         md5Key = "{}{}".format(md5Key, md5Key[0:8])
 
         blockSize = 8
@@ -49,7 +64,13 @@ class Utils(object):
 
     def sendRequest(self, url, payload):
         """Request Handler forwards http request to flutterwave remote service"""
-        # print payload
+        if(self.debug):
+            print payload
+
         r = requests.post("{}{}".format(self.baseUrl, url), json=payload, headers={})
+
+        if(self.debug):
+            print "{} - {}".format(r.status_code, r.text)
+
         return r
 

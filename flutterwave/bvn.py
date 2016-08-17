@@ -6,10 +6,10 @@ class Bvn(Utils):
         Provides methods for verifying a users BVN.
     """
 
-    def __init__(self, apiKey, merchantKey):
-        self.apiKey = apiKey
-        self.merchantKey = merchantKey
-
+    def __init__(self, util):
+        self.util = util
+        
+        
     
     def verify(self, userBvn, verifyUsing):
         """Request verification for a users BVN
@@ -18,11 +18,11 @@ class Bvn(Utils):
         verifyUsing -> verification method to use - Voice, SMS
         '"""
         payload = {
-            "otpoption": super(Bvn, self).encrypData(self.apiKey, verifyUsing),
-            "merchantid": self.merchantKey,
-            "bvn": super(Bvn, self).encrypData(self.apiKey, userBvn)
+            "otpoption": self.util.encryptData(verifyUsing),
+            "merchantid": self.util.merchantKey,
+            "bvn": self.util.encryptData(userBvn)
         }
-        return super(Bvn, self).sendRequest(Utils.bvnVerifyRoute, payload);
+        return self.util.sendRequest(self.util.bvnVerifyRoute, payload);
 
     
     def validate(self, userBvn, otp, transactionReference):
@@ -33,12 +33,12 @@ class Bvn(Utils):
         transactionreference -> refernce received from previous verify request
         '"""
         payload = {
-            "otp": super(Bvn, self).encrypData(self.apiKey, otp),
-            "transactionreference": super(Bvn, self).encrypData(self.apiKey, transactionReference),
-            "merchantid": self.merchantKey,
-            "bvn": super(Bvn, self).encrypData(self.apiKey, userBvn),
+            "otp": self.util.encryptData(otp),
+            "transactionreference": self.util.encryptData(transactionReference),
+            "merchantid": self.util.merchantKey,
+            "bvn": self.util.encryptData(userBvn),
         }
-        return super(Bvn, self).sendRequest(Utils.bvnValidateRoute, payload);
+        return self.util.sendRequest(self.util.bvnValidateRoute, payload);
 
 
     def resendOtp(self, verifyUsing, transactionReference):
@@ -48,9 +48,9 @@ class Bvn(Utils):
         transactionreference -> refernce received from previous verify request
         '"""
         payload = {
-            "validateoption": super(Bvn, self).encrypData(self.apiKey, verifyUsing),
-            "merchantid": self.merchantKey,
-            "transactionreference": super(Bvn, self).encrypData(self.apiKey, transactionReference),
+            "validateoption": self.util.encryptData(verifyUsing),
+            "merchantid": self.util.merchantKey,
+            "transactionreference": self.util.encryptData(transactionReference),
         }
-        return super(Bvn, self).sendRequest(Utils.bvnResendOTPRoute, payload);
+        return self.util.sendRequest(self.util.bvnResendOTPRoute, payload);
 

@@ -1,16 +1,18 @@
-# flutterwave-python
-Python Library for Flutterwave payment APIs
+******************
+Flutterwave Python
+******************
 
+Python Bindings for the Flutterwave Payment APIs.
 
-# Flutterwave Python
+==================
+Installation
+==================
 
-## Installation
-
-To install the flutterwave python package, run the command below
+To install the flutterwave python package, run the command below::
 
     pip install --upgrade flutterwave
 
-or
+or::
 
     easy_install --upgrade flutterwave
 
@@ -18,13 +20,13 @@ See http://www.pip-installer.org/en/latest/index.html for instructions
 on installing pip. If you are on a system with easy_install but not
 pip, you can use easy_install instead.
 
-To install from source, run:
+To install from source, run::
 
     python setup.py install
 
-## Documentation
-
-### API Services
+=================
+API Services
+=================
 - Charge Accounts
 - Charge Cards
 - Disburse to Accounts
@@ -32,15 +34,22 @@ To install from source, run:
 - Card BIN Lookup
 - IP Check
 
-## Getting Started
-To debit an account, two steps: first, tokenize the account, then charge account using the returned token.
+===================
+Getting Started
+===================
+
+To debit an account, two steps: first, tokenize the account, then charge account using the returned token::
 
     python setup.py install
 
 Tokens are valid means of charging an account or card subsequently. 
 
-Sign up at www.flutterwave.com for api-keys.
+Sign up at http://flutterwave.com for API keys.
 
-## Testing
+============
+Testing
+============
 
-Flutterwave-Python is written in python version 2.7 and can be tested using tox.
+Flutterwave-Python is written in python version 2.7 and can be tested by running the command below from the package folder::
+
+    python -m unittest discover

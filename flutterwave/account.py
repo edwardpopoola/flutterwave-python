@@ -26,7 +26,7 @@ class Account(object):
         
         requestData.accountNumber -> Account number to 
         requestData.amount        -> Amount to debit from account (1000.00)
-        requestData.ref           -> Transaction reference you will provide for tracking
+        requestData.ref           -> Transaction reference from the tokenize request
         requestData.otp           -> OTP to verify tokenize request
         requestData.narration     -> Transaction description
         '"""

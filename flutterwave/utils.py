@@ -50,6 +50,9 @@ class Utils(object):
     def encryptData(self, plainText):
         """Provides encryption for plaintext content required in request data."""
 
+        if(self.debug):
+            print plainText
+
         md5Key = hashlib.md5(self.apiKey.encode("utf-8")).digest()
         md5Key = "{}{}".format(md5Key, md5Key[0:8])
 

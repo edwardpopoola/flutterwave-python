@@ -11,7 +11,7 @@ class TestAccounts(unittest.TestCase):
     global amount
     global narration
     global debitAccount
-    global creditAccount
+    global transactionReference
     global otp
     global token
 
@@ -20,8 +20,7 @@ class TestAccounts(unittest.TestCase):
     ref = "{}{}".format("12345ref", time.time())
     amount = "100"
     narration = "sample purchase"
-    debitAccount = "0695149079"
-    creditAccount = "0690000020"
+    debitAccount = "0690000000"
     otp = "12345"
 
 
@@ -30,31 +29,37 @@ class TestAccounts(unittest.TestCase):
         r = flw.account.tokenize(debitAccount)
         d = json.loads(r.text)
 
+        global transactionReference
+        transactionReference = d["data"]["transactionReference"]
+
         # self.assertEqual(d["data"]["responseCode"], "00")
-        print "{}".format(r.text)
+        # print "{}".format(r.text)
         
 
     def test2AccountValidate(self):
         print "\n---------###-- Flutterwave Account Tokenize Validate --###------------"
         data = {
             "amount": amount,
-            "ref": ref,
+            "ref": transactionReference,
             "otp": otp,
             "accountNumber": debitAccount,
             "narration": narration
         }
         r = flw.account.validate(data)
         d = json.loads(r.text)
+
+        global token
+        token = d["data"]["accountToken"]
         
         # self.assertEqual(d["data"]["responsecode"], "00")
-        print "{}".format(r.text)
+        # print "{}".format(r.text)
 
 
     def test3AccountCharge(self):
         print "\n---------###-- Flutterwave Account Charge --###------------"
         data = {
             "amount": amount,
-            "token": ref,
+            "token": token,
             "narration": narration
         }
 
@@ -62,7 +67,7 @@ class TestAccounts(unittest.TestCase):
         d = json.loads(r.text)
         
         # self.assertEqual(d["data"]["responseCode"], "00")
-        print "{}".format(r.text)
+        # print "{}".format(r.text)
 
 
 if __name__ == '__main__':

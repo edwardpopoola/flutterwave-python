@@ -28,13 +28,6 @@ setup(
         'Intended Audience :: Developers',
         'Intended Audience :: Other Audience',
         'Topic :: Software Development :: Libraries :: Python Modules'
-
-        # License
-        'License :: Freely Distributable',
-
-        # Python version
-        'Programming Language :: Python',
-        'Programming Language :: Python :: 2.7',
     ],
 
     keywords='Payments, Payment-integration, Payment-API, Flutterwave',

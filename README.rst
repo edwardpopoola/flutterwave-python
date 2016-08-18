@@ -50,7 +50,7 @@ To debit an account, two steps: first, tokenize the account, then charge account
         "country": "NGN"     # country of debit source
     }
 
-    r = flw.account.charge(debitAccount, country)
+    r = flw.account.charge(payload)
     print "{}".format(r.text)
 
     # Response

@@ -46,8 +46,8 @@ To debit an account, two steps: first, tokenize the account, then charge account
     payload = {
         "token": "FZeDswE6ju0ONCL3864",    # Token returned from account tokenization request
         "amount": "100",    # Amount to debit from account
-        "narration": narration,     # Description for this payment
-        "country": country     # country of debit account
+        "narration": "payment for coffee",     # Description for this payment
+        "country": "NGN"     # country of debit source
     }
 
     r = flw.account.charge(debitAccount, country)

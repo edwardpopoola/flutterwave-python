@@ -17,9 +17,9 @@ class TestDisburse(unittest.TestCase):
     global country
     global currency
 
-    flw = Flutterwave("tk_NabYp2XjZ6G9WwdFruzK", "tk_tdyrSMQo8a")
+    flw = Flutterwave("tk_NabYp2XjZ6G9WwdFruzK", "tk_tdyrSMQo8a", {"debug": True})
 
-    ref = "{}{}".format("12345ref", time.time())
+    ref = "{}{}".format("12345ref", time.time())[0:18]
     amount = "100"
     bankCode = "058"
     narration = "sample disburse"
@@ -44,10 +44,10 @@ class TestDisburse(unittest.TestCase):
             "currency": currency
         }
         r = flw.disburse.send(data)
+        print "{}".format(r.text)
         d = json.loads(r.text)
 
         self.assertEqual(d["data"]["responsecode"], "00")
-        print "{}".format(r.text)
         
 
 

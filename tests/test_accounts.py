@@ -14,26 +14,28 @@ class TestAccounts(unittest.TestCase):
     global transactionReference
     global otp
     global token
+    global country
 
     flw = Flutterwave("tk_NabYp2XjZ6G9WwdFruzK", "tk_tdyrSMQo8a")
 
-    ref = "{}{}".format("12345ref", time.time())
+    ref = "{}{}".format("12345ref", time.time())[0:18]
     amount = "100"
     narration = "sample purchase"
     debitAccount = "0690000000"
     otp = "12345"
+    country = "NGN"
 
 
     def test1AccountTokenize(self):
         print "\n---------###-- Flutterwave Account Tokenize --###------------"
-        r = flw.account.tokenize(debitAccount)
+        r = flw.account.tokenize(debitAccount, country)
         d = json.loads(r.text)
 
         global transactionReference
         transactionReference = d["data"]["transactionReference"]
 
         # self.assertEqual(d["data"]["responseCode"], "00")
-        # print "{}".format(r.text)
+        print "{}".format(r.text)
         
 
     def test2AccountValidate(self):
@@ -43,7 +45,8 @@ class TestAccounts(unittest.TestCase):
             "ref": transactionReference,
             "otp": otp,
             "accountNumber": debitAccount,
-            "narration": narration
+            "narration": narration,
+            "country": country
         }
         r = flw.account.validate(data)
         d = json.loads(r.text)
@@ -52,7 +55,7 @@ class TestAccounts(unittest.TestCase):
         token = d["data"]["accountToken"]
         
         # self.assertEqual(d["data"]["responsecode"], "00")
-        # print "{}".format(r.text)
+        print "{}".format(r.text)
 
 
     def test3AccountCharge(self):
@@ -60,14 +63,15 @@ class TestAccounts(unittest.TestCase):
         data = {
             "amount": amount,
             "token": token,
-            "narration": narration
+            "narration": narration,
+            "country": country
         }
 
         r = flw.account.charge(data)
         d = json.loads(r.text)
         
         # self.assertEqual(d["data"]["responseCode"], "00")
-        # print "{}".format(r.text)
+        print "{}".format(r.text)
 
 
 if __name__ == '__main__':

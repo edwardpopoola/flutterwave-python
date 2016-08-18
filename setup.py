@@ -34,7 +34,7 @@ setup(
 
     packages=find_packages(exclude=[]),
 
-    install_requires=['requests', 'Crypto', 'hashlib'],
+    install_requires=['requests', 'Crypto'],
 
     entry_points={}
 )

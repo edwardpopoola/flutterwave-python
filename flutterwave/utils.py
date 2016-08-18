@@ -68,12 +68,13 @@ class Utils(object):
     def sendRequest(self, url, payload):
         """Request Handler forwards http request to flutterwave remote service"""
         if(self.debug):
-            print payload
+            print "{} :: {}{}".format(">>> URL", self.baseUrl, url)
+            print "{} :: {}".format(">>> PAYLOAD",payload)
 
         r = requests.post("{}{}".format(self.baseUrl, url), json=payload, headers={})
 
         if(self.debug):
-            print "{} - {}".format(r.status_code, r.text)
+            print "{} :: {} - {}".format(">>> RESPONSE", r.status_code, r.text)
 
         return r
 

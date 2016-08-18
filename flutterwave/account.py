@@ -9,14 +9,16 @@ class Account(object):
         self.util = util
 
     
-    def tokenize(self, accountNumber):
+    def tokenize(self, accountNumber, country):
         """Request to tokenize an account
         
         requestData.accountNumber  -> Account number to tokenize
+        country                    -> Country code (NGN)
         '"""
         payload = {
             "accountNumber": self.util.encryptData(accountNumber),
-            "merchantid": self.util.merchantKey
+            "merchantid": self.util.merchantKey,
+            "country": self.util.encryptData(country)
         }
         return self.util.sendRequest(self.util.accountTokenizeRoute, payload);
 
@@ -29,6 +31,7 @@ class Account(object):
         requestData.ref           -> Transaction reference from the tokenize request
         requestData.otp           -> OTP to verify tokenize request
         requestData.narration     -> Transaction description
+        country                   -> Country code (NGN)
         '"""
         payload = {
             "merchantid": self.util.merchantKey,
@@ -37,6 +40,7 @@ class Account(object):
             "reference": self.util.encryptData(requestData['ref']),
             "billingamount": self.util.encryptData(requestData['amount']),
             "narration": self.util.encryptData(requestData['narration']),
+            "country": self.util.encryptData(requestData['country'])
         }
         return self.util.sendRequest(self.util.accountValidateRoute, payload);
 
@@ -47,12 +51,14 @@ class Account(object):
         requestData.token     -> Token from previously tokenized account
         requestData.amount    -> Amount to debit from account
         requestData.narration -> Transaction description
+        country               -> Country code (NGN)
         '"""
         payload = {
             "merchantid": self.util.merchantKey,
             "accountToken": self.util.encryptData(requestData['token']),
             "billingamount": self.util.encryptData(requestData['amount']),
-            "debitnarration": self.util.encryptData(requestData['narration'])
+            "debitnarration": self.util.encryptData(requestData['narration']),
+            "country": self.util.encryptData(requestData['country'])
         }
         return self.util.sendRequest(self.util.accountChargeRoute, payload);
 

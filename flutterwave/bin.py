@@ -8,12 +8,14 @@ class Bin(Utils):
         self.util = util
 
 
-    def check(self, cardBin):
+    def check(self, cardBin, country):
         """Request card details using Bin
         
         cardBin -> First 6-digits of card BIN
+        country -> Country code (NGN)
         '"""
         payload = {
-            'card6': cardBin
+            "card6": cardBin,
+            "country": country
         }
         return self.util.sendRequest(self.util.binCheckRoute, payload)

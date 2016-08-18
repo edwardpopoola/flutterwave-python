@@ -13,15 +13,15 @@ class Disburse(Utils):
     def send(self, requestData):
         """Request a disburse to a destination account.
         
-        requestData.amount        -> Amount to credit recipient (1000.00)
-        requestData.ref           -> a transaction reference you will provide for tracking
-        requestData.narration     -> Description to include in the transaction
-        requestData.creditAccount -> Account to credit
-        requestData.recipientName -> Transaction recipient name
-        requestData.bankCode      -> Recipients Bankcode
-        requestData.senderName    -> Transaction sender name
-        requestData.country       -> Country code
-        requestData.currency      -> Transaction Currency
+        amount        -> Amount to credit recipient (1000.00)
+        ref           -> a transaction reference you will provide for tracking
+        narration     -> Description to include in the transaction
+        creditAccount -> Account to credit
+        recipientName -> Transaction recipient name
+        bankCode      -> Recipients Bankcode
+        senderName    -> Transaction sender name
+        country       -> Country code (NGN)
+        currency      -> Transaction Currency
         '"""
         payload = {
             "merchantid": self.util.merchantKey,

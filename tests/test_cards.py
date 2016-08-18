@@ -24,11 +24,12 @@ class TestCards(unittest.TestCase):
     global cardToken
     global transactionRef
     global authorizeID
+    global country
 
 
     flw = Flutterwave("tk_NabYp2XjZ6G9WwdFruzK", "tk_tdyrSMQo8a")
 
-    ref = "{}{}".format("cust", time.time())
+    ref = "{}{}".format("cust", time.time())[0:18]
     validateOption = "SMS"
     authModel = "BVN"
     cardNumber = "4842508225502547"
@@ -42,6 +43,7 @@ class TestCards(unittest.TestCase):
     narration = "sample card purchase"
     responseUrl = "http://127.0.0.1/your_callback_url"
     otp = "12345"
+    country = "NGN"
 
 
     def test1CardTokenize(self):
@@ -54,6 +56,7 @@ class TestCards(unittest.TestCase):
             "expiryMonth": expiryMonth,
             "expiryYear": expiryYear,
             "bvn": bvn,
+            "country": country
         }
 
         r = flw.card.tokenize(data)
@@ -70,7 +73,8 @@ class TestCards(unittest.TestCase):
         print "\n---------###-- Flutterwave Card Validate Tokenize --###------------"
         data = {
             "otp": otp,
-            "otpTransactionIdentifier": otpTransactionIdentifier
+            "otpTransactionIdentifier": otpTransactionIdentifier,
+            "country": country
         }
 
         r = flw.card.validate(data)
@@ -97,7 +101,8 @@ class TestCards(unittest.TestCase):
             "customerID": customerID,
             "narration": narration,
             "responseUrl": responseUrl,
-            "currency": currency
+            "currency": currency,
+            "country": country
         }
 
         r = flw.card.charge(data)
@@ -114,7 +119,8 @@ class TestCards(unittest.TestCase):
         print "\n---------###-- Flutterwave Card Validate Charge --###------------"
         data = {
             "otp": otp,
-            "otpTransactionIdentifier": otpTransactionIdentifier
+            "otpTransactionIdentifier": otpTransactionIdentifier,
+            "country": country
         }
 
         r = flw.card.validate(data)
@@ -133,7 +139,8 @@ class TestCards(unittest.TestCase):
             "customerID": customerID,
             "narration": narration,
             "responseUrl": responseUrl,
-            "currency": currency
+            "currency": currency,
+            "country": country
         }
 
         r = flw.card.chargeWithToken(data)
@@ -149,6 +156,7 @@ class TestCards(unittest.TestCase):
             "amount": amount,
             "currency": currency,
             "cardToken": cardToken,
+            "country": country
         }
 
         r = flw.card.preauth(data)
@@ -169,7 +177,8 @@ class TestCards(unittest.TestCase):
             "amount": amount,
             "currency": currency,
             "transactionRef": transactionRef,
-            "authorizeID": authorizeID
+            "authorizeID": authorizeID,
+            "country": country
         }
 
         r = flw.card.capture(data)
@@ -185,6 +194,7 @@ class TestCards(unittest.TestCase):
             "amount": amount,
             "currency": currency,
             "cardToken": cardToken,
+            "country": country
         }
 
         r = flw.card.preauth(data)
@@ -205,7 +215,8 @@ class TestCards(unittest.TestCase):
             "amount": amount,
             "currency": currency,
             "transactionRef": transactionRef,
-            "authorizeID": authorizeID
+            "authorizeID": authorizeID,
+            "country": country
         }
 
         r = flw.card.void(data)
@@ -220,7 +231,8 @@ class TestCards(unittest.TestCase):
             "amount": amount,
             "currency": currency,
             "transactionRef": transactionRef,
-            "authorizeID": authorizeID
+            "authorizeID": authorizeID,
+            "country": country
         }
 
         r = flw.card.refund(data)

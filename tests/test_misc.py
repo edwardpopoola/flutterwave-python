@@ -9,17 +9,19 @@ class TestMisc(unittest.TestCase):
     global flw
     global ip
     global cardBin6
+    global country
 
     flw = Flutterwave("tk_NabYp2XjZ6G9WwdFruzK", "tk_tdyrSMQo8a")
 
-    ref = "{}{}".format("12345ref", time.time())
+    ref = "{}{}".format("12345ref", time.time())[0:18]
     ip = "127.0.0.1"
     cardBin6 = "484250"
+    country = "NGN"
 
 
     def test1Ip(self):
         print "\n---------###-- Flutterwave IP Check --###------------"
-        r = flw.ip.check(ip)
+        r = flw.ip.check(ip, country)
         d = json.loads(r.text)
 
         self.assertEqual(d["data"]["responsecode"], "00")
@@ -28,7 +30,7 @@ class TestMisc(unittest.TestCase):
 
     def test2Bin(self):
         print "\n---------###-- Flutterwave Card BIN Check --###------------"
-        r = flw.bin.check(cardBin6)
+        r = flw.bin.check(cardBin6, country)
         d = json.loads(r.text)
 
         self.assertEqual(d["data"]["responseCode"], "00")

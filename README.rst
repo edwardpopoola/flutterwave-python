@@ -40,7 +40,31 @@ Getting Started
 
 To debit an account, two steps: first, tokenize the account, then charge account using the returned token::
 
-    python setup.py install
+    from flutterwave import Flutterwave
+    flw = Flutterwave("<api_key>", "<merchant_key>", {"debug": True})
+
+    payload = {
+        "token": "FZeDswE6ju0ONCL3864",    # Token returned from account tokenization request
+        "amount": "100",    # Amount to debit from account
+        "narration": narration,     # Description for this payment
+        "country": country     # country of debit account
+    }
+
+    r = flw.account.charge(debitAccount, country)
+    print "{}".format(r.text)
+
+    # Response
+    # {
+    #   {
+    #       "transactionreference":"FLW00292801",
+    #       "responseMessage":"Approved or Completed Successfully",
+    #       "responseCode":"00"
+    #   },
+    #   "status":"success"
+    # }
+
+
+
 
 Tokens are valid means of charging an account or card subsequently. 
 

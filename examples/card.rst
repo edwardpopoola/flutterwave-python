@@ -2,7 +2,11 @@
 Card
 ******************
 
+::
 
+    #
+    # # TOKENIZE CARD
+    #
     from flutterwave import Flutterwave
     flw = Flutterwave("<api_key>", "<merchant_key>", {"debug": True})
     
@@ -37,7 +41,9 @@ Card
     
     
     
-    
+    #
+    # # VALIDATE TOKENIZE CARD
+    #
     from flutterwave import Flutterwave
     flw = Flutterwave("<api_key>", "<merchant_key>", {"debug": True})
     
@@ -66,8 +72,9 @@ Card
     
     
     
-    
-    
+    #
+    # # CHARGE CARD
+    #
     from flutterwave import Flutterwave
     flw = Flutterwave("<api_key>", "<merchant_key>", {"debug": True})
     
@@ -106,7 +113,9 @@ Card
     
     
     
-    
+    #
+    # # CHARGE CARD USING TOKEN
+    #
     from flutterwave import Flutterwave
     flw = Flutterwave("<api_key>", "<merchant_key>", {"debug": True})
     
@@ -127,8 +136,9 @@ Card
     
     
     
-    
-    
+    #
+    # # PREAUTH AMOUNT ON CARD
+    #
     from flutterwave import Flutterwave
     flw = Flutterwave("<api_key>", "<merchant_key>", {"debug": True})
     
@@ -159,7 +169,9 @@ Card
     
     
     
-    
+    #
+    # # CAPTURE AMOUNT ON CARD
+    #
     from flutterwave import Flutterwave
     flw = Flutterwave("<api_key>", "<merchant_key>", {"debug": True})
     
@@ -191,6 +203,9 @@ Card
     
     
     
+    #
+    # # VOID PREAUTH ON CARD
+    #
     from flutterwave import Flutterwave
     flw = Flutterwave("<api_key>", "<merchant_key>", {"debug": True})
     
@@ -221,6 +236,10 @@ Card
     
     
     
+
+    #
+    # # REFUND AMOUNT TO CARD
+    #
     from flutterwave import Flutterwave
     flw = Flutterwave("<api_key>", "<merchant_key>", {"debug": True})
     

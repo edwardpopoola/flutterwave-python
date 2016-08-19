@@ -14,7 +14,7 @@ class TestMisc(unittest.TestCase):
     flw = Flutterwave("tk_NabYp2XjZ6G9WwdFruzK", "tk_tdyrSMQo8a", {"debug": True})
 
     ref = "{}{}".format("12345ref", time.time())[0:18]
-    ip = "127.0.0.1"
+    ip = "41.58.202.50"
     cardBin6 = "484250"
     country = "NGN"
 

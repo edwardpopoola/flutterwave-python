@@ -1,6 +1,7 @@
 ******************
 Account
 ******************
+
 ::
 
     #
@@ -70,7 +71,7 @@ Account
         "token": "xKeI4NDR9K0aI4J1089",    # Token returned from account tokenization request
         "amount": "100",                   # Amount to debit from account
         "narration": "payment for coffee", # Description for this payment
-        "country": "NGN"     			    # country of debit source
+        "country": "NGN"     			   # country of debit source
     }
 
     r = flw.account.charge(debitAccount, country)

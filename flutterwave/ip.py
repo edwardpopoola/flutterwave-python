@@ -8,12 +8,14 @@ class Ip(object):
         self.util = util
 
 
-    def check(self, ipAddress):
+    def check(self, ipAddress, country):
         """Request location and information on a specified IP
         
         ipAddress -> IP address to search
+        country -> Country code (NGN)
         '"""
         payload = {
-            'ip': ipAddress
+            'ip': ipAddress,
+            'country': country
         }
         return self.util.sendRequest(self.util.ipCheckRoute, payload)

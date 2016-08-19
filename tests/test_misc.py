@@ -35,6 +35,14 @@ class TestMisc(unittest.TestCase):
 
         self.assertEqual(d["data"]["responseCode"], "00")
         print "{}".format(r.text)
+
+    def test2Bin(self):
+        print "\n---------###-- Flutterwave Get Bank List --###------------"
+        r = flw.bank.list()
+        d = json.loads(r.text)
+
+        # self.assertEqual(d["data"]["responseCode"], "00")
+        print "{}".format(r.text)
         
 
 

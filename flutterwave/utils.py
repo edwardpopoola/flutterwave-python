@@ -34,6 +34,7 @@ class Utils(object):
         self.cardCaptureRoute = "/pwc/rest/card/mvva/capture"
         self.cardRefundRoute = "/pwc/rest/card/mvva/refund"
         self.cardVoidRoute = "/pwc/rest/card/mvva/void"
+        self.bankListRoute = "/pwc/rest/fw/banks/"
 
         # State
         self.debug = False

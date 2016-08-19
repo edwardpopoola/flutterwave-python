@@ -5,6 +5,7 @@ from account import Account
 from bin import Bin
 from disburse import Disburse
 from card import Card
+from bank import Bank
 
 class Flutterwave():
     """The Flutterwave Class
@@ -34,4 +35,5 @@ class Flutterwave():
         self.bin = Bin(self.util)
         self.disburse = Disburse(self.util)
         self.card = Card(self.util)
+        self.bank = Bank(self.util)
 

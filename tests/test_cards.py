@@ -27,7 +27,7 @@ class TestCards(unittest.TestCase):
     global country
 
 
-    flw = Flutterwave("tk_NabYp2XjZ6G9WwdFruzK", "tk_tdyrSMQo8a")
+    flw = Flutterwave("tk_NabYp2XjZ6G9WwdFruzK", "tk_tdyrSMQo8a", {"debug": True})
 
     ref = "{}{}".format("cust", time.time())[0:18]
     validateOption = "SMS"
@@ -135,10 +135,8 @@ class TestCards(unittest.TestCase):
         data = {
             "amount": amount,
             "cardToken": cardToken,
-            "currency": currency,
             "customerID": customerID,
             "narration": narration,
-            "responseUrl": responseUrl,
             "currency": currency,
             "country": country
         }

@@ -26,7 +26,7 @@ class Account(object):
     def validate(self, requestData):
         """Request to validate account tokenization
         
-        requestData.accountNumber -> Account number to 
+        requestData.accountNumber -> Account number requesting token
         requestData.amount        -> Amount to debit from account (1000.00)
         requestData.ref           -> Transaction reference from the tokenize request
         requestData.otp           -> OTP to verify tokenize request

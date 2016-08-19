@@ -109,9 +109,9 @@ class Card(Utils):
         """Request to validate a card charge transaction
         
         otp                      -> otp
-        otpTransactionIdentifier -> Transaction reference from card charge request
+        otpTransactionIdentifier -> Transaction reference from card charge / tokenize request
         cardtype                 -> (Optional) Card type - Diamound
-        country         -> Country code (NGN)
+        country                  -> Country code (NGN)
         '"""
         payload = {
             "merchantid": self.util.merchantKey,

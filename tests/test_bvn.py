@@ -14,7 +14,7 @@ class TestBvn(unittest.TestCase):
     global country
 
 
-    flw = Flutterwave("tk_NabYp2XjZ6G9WwdFruzK", "tk_tdyrSMQo8a")
+    flw = Flutterwave("tk_NabYp2XjZ6G9WwdFruzK", "tk_tdyrSMQo8a", {"debug": True})
 
     verifyUsing = "SMS"
     bvn = "12345678901"

@@ -16,7 +16,7 @@ class TestAccounts(unittest.TestCase):
     global token
     global country
 
-    flw = Flutterwave("tk_NabYp2XjZ6G9WwdFruzK", "tk_tdyrSMQo8a")
+    flw = Flutterwave("tk_NabYp2XjZ6G9WwdFruzK", "tk_tdyrSMQo8a", {"debug": True})
 
     ref = "{}{}".format("12345ref", time.time())[0:18]
     amount = "100"

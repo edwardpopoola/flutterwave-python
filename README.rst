@@ -66,7 +66,7 @@ To debit an account, in two steps: first, tokenize the account, then charge the 
 
 
 Tokens are valid means of charging an account or card subsequently. 
-Find more examples in the `here <https://github.com/Flutterwave/flutterwave-python/tree/master/examples>`_ .
+Find more examples `here <https://github.com/Flutterwave/flutterwave-python/tree/master/examples>`_ .
 
 Sign up at http://flutterwave.com for API keys.
 

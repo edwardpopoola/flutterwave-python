@@ -43,6 +43,16 @@ class TestMisc(unittest.TestCase):
 
         # self.assertEqual(d["data"]["responseCode"], "00")
         print "{}".format(r.text)
+
+    def testEncryptDecrypt(self):
+        print "\n---------###-- Utilities : Encrypt and Decrypt --###------------"
+        print ">>> Plain"
+        plain = "I got encrypted, then reversed."
+        encrypted = flw.util.encryptData(plain)
+        print ">>> Encrypted"
+        decrypted = flw.util.decryptData(encrypted)
+        print ">>> Decrypted"
+        print decrypted
         
 
 

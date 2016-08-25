@@ -64,8 +64,23 @@ class Utils(object):
         plainText = "{}{}".format(plainText, "".join(chr(padDiff) * padDiff))
         encrypted = base64.b64encode(cipher.encrypt(plainText))
         return encrypted
-    
 
+    
+    def decryptData(self, ciphertext):
+        """Provides decryption for encrypted content returned from flutterwave service"""
+
+        if(self.debug):
+            print ciphertext
+
+        md5Key = hashlib.md5(self.apiKey.encode("utf-8")).digest()
+        md5Key = "{}{}".format(md5Key, md5Key[0:8])
+
+        cipher = DES3.new(md5Key, DES3.MODE_ECB)
+
+        decrypted = cipher.decrypt(base64.b64decode(ciphertext))
+        return decrypted
+
+        
     def sendRequest(self, url, payload):
         """Request Handler forwards http request to flutterwave remote service"""
         if(self.debug):

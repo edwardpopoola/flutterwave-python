@@ -11,7 +11,7 @@ Card Bin
     flw = Flutterwave("<api_key>", "<merchant_key>", {"debug": True})
 
     cardBin6 = "484250" # First 6-digits of card BIN
-    country = "NGN"     # Country code (NGN)
+    country = "NG"     # Country code (NGN)
 
     r = flw.bin.check(cardBin6, country)
     print "{}".format(r.text)

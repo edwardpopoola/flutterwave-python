@@ -1,5 +1,5 @@
 ******************
-Bank
+Utility
 ******************
 
 ::
@@ -76,4 +76,74 @@ Bank
     #         "068": "Standard Chartered Bank"
     #     },
     #     "status": "success"
+    # }
+
+
+
+
+    #
+    # # ENCRYPT / DECRYPT
+    #
+    from flutterwave import Flutterwave
+    flw = Flutterwave("<api_key>", "<merchant_key>", {"debug": True})
+
+    print ">>> Plain"
+    plain = "I got encrypted, then reversed."
+
+    encrypted = flw.util.encryptData(plain)
+
+    print ">>> Encrypted"
+
+    decrypted = flw.util.decryptData(encrypted)
+
+    print ">>> Decrypted"
+    print decrypted
+
+    # RESPONSE
+    # >>> Plain
+    # I got encrypted, then reversed.
+    # >>> Encrypted
+    # K0yxLI7nA9wrAomi1klHvxRObHchZbeSKdVGW+fTZs0=
+    # >>> Decrypted
+    # I got encrypted, then reversed.
+
+
+
+
+    #
+    # # CURRENCY LIST
+    #
+    from flutterwave import Flutterwave
+    flw = Flutterwave("<api_key>", "<merchant_key>", {"debug": True})
+
+    print flw.util.currencyList()
+
+    # RESPONSE
+    # {
+    #     'USD': {'code': 'USD', 'name': 'US Dollar'},
+    #     'GHS': {'code': 'GHS', 'name': 'Ghanian Cedi'},
+    #     'NGN': {'code': 'NGN', 'name': 'Naira'},
+    #     'GBP': {'code': 'GBP', 'name': 'British Pound'},
+    #     'KES': {'code': 'KES', 'name': 'Kenya Shilling'},
+    #     'EUR': {'code': 'EUR', 'name': 'Euro'}
+    # }
+
+
+
+
+    #
+    # # COUNTRY LIST
+    #
+    from flutterwave import Flutterwave
+    flw = Flutterwave("<api_key>", "<merchant_key>", {"debug": True})
+
+    print flw.util.countryList()
+
+    # RESPONSE
+    # {
+    #     'UK': {'code': 'UK', 'name': 'United Kingdom'}, 
+    #     'GH': {'code': 'GH', 'name': 'Ghana'}, 
+    #     'KE': {'code': 'KE', 'name': 'Kenya'}, 
+    #     'US': {'code': 'US', 'name': 'United States'}, 
+    #     'NG': {'code': 'NG', 'name': 'Nigeria'}
     # }

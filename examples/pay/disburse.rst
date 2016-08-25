@@ -18,7 +18,7 @@ Disburse
         "creditAccount": "0921318712",    # Account to credit
         "recipientName": "test receiver", # Transaction recipient name
         "senderName": "test app",         # Transaction sender name
-        "country": "NG",                  # Country code (NGN)
+        "country": "NG",                  # Country code (NG)
         "currency": "NGN"                 # Transaction Currency
     }
     r = flw.disburse.send(data)

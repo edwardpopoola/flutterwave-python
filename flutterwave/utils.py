@@ -99,24 +99,24 @@ class Utils(object):
         """Returns a List of Countries"""
         return {
             "NG": {
-                code: "NG",
-                name: "Nigeria"
+                "code": "NG",
+                "name": "Nigeria"
             },
             "GH": {
-                code: "GH",
-                name: "Ghana"
+                "code": "GH",
+                "name": "Ghana"
             },
             "US": {
-                code: "US",
-                name: "United States"
+                "code": "US",
+                "name": "United States"
             },
             "KE": {
-                code: "KE",
-                name: "Kenya"
+                "code": "KE",
+                "name": "Kenya"
             },
             "UK": {
-                code: "UK",
-                name: "United Kingdom"
+                "code": "UK",
+                "name": "United Kingdom"
             },
         }
 
@@ -124,28 +124,28 @@ class Utils(object):
     def currencyList(self):
         return {
             "NGN": {
-                code: "NGN",
-                name: "Naira"
+                "code": "NGN",
+                "name": "Naira"
             },
             "USD": {
-                code: "USD",
-                name: "US Dollar"
+                "code": "USD",
+                "name": "US Dollar"
             },
             "GBP": {
-                code: "GBP",
-                name: "British Pound"
+                "code": "GBP",
+                "name": "British Pound"
             },
             "EUR": {
-                code: "EUR",
-                name: "Euro"
+                "code": "EUR",
+                "name": "Euro"
             },
             "GHS": {
-                code: "GHS",
-                name: "Ghanian Cedi"
+                "code": "GHS",
+                "name": "Ghanian Cedi"
             },
             "KES": {
-                code: "KES",
-                name: "Kenya Shilling"
+                "code": "KES",
+                "name": "Kenya Shilling"
             },
         }
 

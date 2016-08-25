@@ -43,7 +43,7 @@ class TestCards(unittest.TestCase):
     narration = "sample card purchase"
     responseUrl = "http://127.0.0.1/your_callback_url"
     otp = "12345"
-    country = "NGN"
+    country = "NG"
 
 
     def test1CardTokenize(self):

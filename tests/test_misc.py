@@ -16,7 +16,7 @@ class TestMisc(unittest.TestCase):
     ref = "{}{}".format("12345ref", time.time())[0:18]
     ip = "41.58.202.50"
     cardBin6 = "484250"
-    country = "NGN"
+    country = "NG"
 
 
     def test1Ip(self):

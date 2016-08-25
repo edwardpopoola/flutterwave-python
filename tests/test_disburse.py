@@ -27,7 +27,7 @@ class TestDisburse(unittest.TestCase):
     recipientName = "test receiver"
     senderName = "test app"
     country = "NG"
-    currency = "NGN"
+    currency = "NG"
 
 
     def test1DisburseSend(self):

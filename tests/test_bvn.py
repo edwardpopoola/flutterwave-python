@@ -19,7 +19,7 @@ class TestBvn(unittest.TestCase):
     verifyUsing = "SMS"
     bvn = "12345678901"
     otp = "12345"
-    country = "NGN"
+    country = "NG"
 
 
 

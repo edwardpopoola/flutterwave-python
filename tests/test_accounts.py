@@ -23,7 +23,7 @@ class TestAccounts(unittest.TestCase):
     narration = "sample purchase"
     debitAccount = "0690000000"
     otp = "12345"
-    country = "NGN"
+    country = "NG"
 
 
     def test1AccountTokenize(self):

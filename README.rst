@@ -38,16 +38,16 @@ API Services
 Getting Started
 ===================
 
-To debit an account, two steps: first, tokenize the account, then charge account using the returned token::
+To debit an account, in two steps: first, tokenize the account, then charge the account using the returned token::
 
     from flutterwave import Flutterwave
     flw = Flutterwave("<api_key>", "<merchant_key>", {"debug": True})
 
     payload = {
         "token": "FZeDswE6ju0ONCL3864",    # Token returned from account tokenization request
-        "amount": "100",    # Amount to debit from account
-        "narration": "payment for coffee",     # Description for this payment
-        "country": "NGN"     # country of debit source
+        "amount": "100",                   # Amount to debit from account
+        "narration": "payment for coffee", # Description for this payment
+        "country": "NG"                    # country of debit source
     }
 
     r = flw.account.charge(payload)
@@ -65,8 +65,8 @@ To debit an account, two steps: first, tokenize the account, then charge account
 
 
 
-
 Tokens are valid means of charging an account or card subsequently. 
+Find more examples in the `here <https://github.com/Flutterwave/flutterwave-python/tree/master/examples>`_ .
 
 Sign up at http://flutterwave.com for API keys.
 

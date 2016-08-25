@@ -94,3 +94,58 @@ class Utils(object):
 
         return r
 
+
+    def countryList(self):
+        """Returns a List of Countries"""
+        return {
+            "NG": {
+                code: "NG",
+                name: "Nigeria"
+            },
+            "GH": {
+                code: "GH",
+                name: "Ghana"
+            },
+            "US": {
+                code: "US",
+                name: "United States"
+            },
+            "KE": {
+                code: "KE",
+                name: "Kenya"
+            },
+            "UK": {
+                code: "UK",
+                name: "United Kingdom"
+            },
+        }
+
+
+    def currencyList(self):
+        return {
+            "NGN": {
+                code: "NGN",
+                name: "Naira"
+            },
+            "USD": {
+                code: "USD",
+                name: "US Dollar"
+            },
+            "GBP": {
+                code: "GBP",
+                name: "British Pound"
+            },
+            "EUR": {
+                code: "EUR",
+                name: "Euro"
+            },
+            "GHS": {
+                code: "GHS",
+                name: "Ghanian Cedi"
+            },
+            "KES": {
+                code: "KES",
+                name: "Kenya Shilling"
+            },
+        }
+

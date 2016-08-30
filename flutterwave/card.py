@@ -41,7 +41,7 @@ class Card(Utils):
         """Request to charge a card 
         
         amount          -> Amount to debit from card
-        authModel       -> authentication Model - BVN, PIN, NOAUTH, VBVSECURECODE
+        authModel       -> authentication Model - BVN, PIN, NOAUTH, VBVSECURECODE (requires decryption)
         cardNumber      -> Card Number
         cvv             -> Card CVV
         expiryMonth     -> Card expiry month

@@ -29,6 +29,7 @@ class Utils(object):
         self.accountChargeRoute = "/pwc/rest/recurrent/account/charge"
         self.cardTokenizeRoute = "/pwc/rest/card/mvva/tokenize"
         self.cardChargeRoute = "/pwc/rest/card/mvva/pay"
+        self.cardChargeVerifyRoute = "/pwc/rest/card/mvva/status"
         self.cardValidateRoute = "/pwc/rest/card/mvva/pay/validate"
         self.cardPreauthRoute = "/pwc/rest/card/mvva/preauthorize"
         self.cardCaptureRoute = "/pwc/rest/card/mvva/capture"

@@ -11,7 +11,7 @@ Account
     flw = Flutterwave("<api_key>", "<merchant_key>", {"debug": True})
 
     debitAccount =  "0690000000" # Account number to tokenize
-    countryCode = "NG"          # Country code (NG)
+    countryCode = "NG"           # Country code (NG)
 
     r = flw.account.tokenize(debitAccount, countryCode)
     print "{}".format(r.text)
@@ -41,7 +41,7 @@ Account
         "otp": "12345",                 # OTP to verify tokenize request
         "accountNumber": "0690000000",  # Account number requesting token
         "narration": "sample purchase", # Transaction description
-        "country": "NG"                # Country code (NG)
+        "country": "NG"                 # Country code (NG)
     }
 
     r = flw.account.validate(payload)

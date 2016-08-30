@@ -143,12 +143,25 @@ class TestCards(unittest.TestCase):
 
         r = flw.card.chargeWithToken(data)
         d = json.loads(r.text)
+
+        global transactionRef
+        transactionRef = d["data"]["transactionreference"]
         
         self.assertEqual(d["data"]["responsecode"], "00")
         print "{}".format(r.text)
 
 
-    def test6CardPreauth(self):
+    def test6VerifyCharge(self):
+        print "\n---------###-- Flutterwave Verify Card Charge --###------------"
+
+        r = flw.card.verifyCharge(transactionRef, country)
+        d = json.loads(r.text)
+        
+        self.assertEqual(d["data"]["responsecode"], "00")
+        print "{}".format(r.text)
+
+
+    def test7CardPreauth(self):
         print "\n---------###-- Flutterwave Card Preauth 1 --###------------"
         data = {
             "amount": amount,
@@ -169,7 +182,7 @@ class TestCards(unittest.TestCase):
         print "{}".format(r.text)
 
 
-    def test7CardCapture(self):
+    def test8CardCapture(self):
         print "\n---------###-- Flutterwave Card Capture 1 --###------------"
         data = {
             "amount": amount,
@@ -186,7 +199,7 @@ class TestCards(unittest.TestCase):
         print "{}".format(r.text)
 
 
-    def test8CardPreauth(self):
+    def test9CardPreauth(self):
         print "\n---------###-- Flutterwave Card Preauth 2 --###------------"
         data = {
             "amount": amount,
@@ -207,7 +220,7 @@ class TestCards(unittest.TestCase):
         print "{}".format(r.text)
 
 
-    def test9CardVoid(self):
+    def test91CardVoid(self):
         print "\n---------###-- Flutterwave Card Void 2 --###------------"
         data = {
             "amount": amount,
@@ -223,7 +236,7 @@ class TestCards(unittest.TestCase):
         # self.assertEqual(d["data"]["responsecode"], "00")
         print "{}".format(r.text)
 
-    def test91CardRefund(self):
+    def test92CardRefund(self):
         print "\n---------###-- Flutterwave Card Refund --###------------"
         data = {
             "amount": amount,

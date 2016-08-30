@@ -11,7 +11,7 @@ IP
     flw = Flutterwave("<api_key>", "<merchant_key>", {"debug": True})
 
     ipAddress = "41.58.202.50" # IP address to search
-    country = "NG"            # Country code (NG)
+    country = "NG"             # Country code (NG)
 
     r = flw.ip.check(ipAddress, country)
     print "{}".format(r.text)

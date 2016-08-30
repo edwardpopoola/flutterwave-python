@@ -65,7 +65,7 @@ BVN
     bvn = "12345678901"                  # the users 11-digit BVN to validate
     otp = "12345"                        # otp received by user from verify request
     transactionReference = "FLW00293154" # refernce received from previous verify request
-    country = "NG"                      # Country code (NG)
+    country = "NG"                       # Country code (NG)
 
     r = flw.bvn.validate(bvn, otp, transactionReference, country)
     print "{}".format(r.text)

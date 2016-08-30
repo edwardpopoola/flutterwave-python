@@ -105,6 +105,21 @@ class Card(Utils):
         return self.util.sendRequest(self.util.cardChargeRoute, payload);
 
 
+    def verifyCharge(self, transactionRef, country):
+        """Request to verify a charge transaction using the returned transaction reference
+        
+        transactionRef -> Transaction reference from a charge request
+        country        -> Country code (NGN)
+        '"""
+        payload = {
+            "merchantid": self.util.merchantKey,
+            "trxreference": self.util.encryptData(transactionRef),
+            "country": self.util.encryptData(country)
+        }
+
+        return self.util.sendRequest(self.util.cardChargeVerifyRoute, payload);
+
+
     def validate(self, requestData):
         """Request to validate a card charge transaction
         

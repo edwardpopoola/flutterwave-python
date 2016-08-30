@@ -18,7 +18,7 @@ Card
         "expiryMonth": "10",              # Card expiry month
         "expiryYear": "18",               # Card expiry year
         "bvn": "12345678901",             # (Optional) User BVN, required only for authModel=BVN
-        "country": "NG"                  # Country code (NG)
+        "country": "NG"                   # Country code (NG)
     }
     
     r = flw.card.tokenize(data)
@@ -50,7 +50,7 @@ Card
     data = {
         "otp": "12345",                            # otp
         "otpTransactionIdentifier": "FLW00293082", # Transaction reference from card charge / tokenize request
-        "country": "NG"                           # Country code (NG)
+        "country": "NG"                            # Country code (NG)
     }
     
     r = flw.card.validate(data)
@@ -90,7 +90,7 @@ Card
         "narration": "sample card purchase",       # Transaction description
         "responseUrl": "http://your_callback_url", # Callback Url
         "currency": "NGN",                         # Transaction currency
-        "country": "NG"                           # Country code (NG)
+        "country": "NG"                            # Country code (NG)
     }
     
     r = flw.card.charge(data)
@@ -124,16 +124,62 @@ Card
         "customerID": "cust1471629671",      # Customer ID for tracking charge transaction
         "narration": "sample card purchase", # Transaction description
         "currency": "NGN",                   # Transaction currency
-        "country": "NG"                     # Country code (NG)
+        "country": "NG"                      # Country code (NG)
     }
     
     r = flw.card.chargeWithToken(data)
     print "{}".format(r.text)
     
     # RESPONSE
+    # {
+    #     "data":{
+    #         "responsecode":"00",
+    #         "responsemessage":"Successful",
+    #         "otptransactionidentifier":null,
+    #         "transactionreference":"FLWT00296866",
+    #         "responsehtml":null,
+    #         "responsetoken":null
+    #     },
+    #     "status":"success"
+    # }
+
+
+
+
+    #
+    # # VERIFY CARD CHARGE
+    #
+    from flutterwave import Flutterwave
+    flw = Flutterwave("<api_key>", "<merchant_key>", {"debug": True})
+
+    transactionRef = "FLWT00296866"      # Transaction reference from a charge request
+    country = "NG"                       # Country code (NG)
+    
+    r = flw.card.verifyCharge(transactionRef, country)
+    print "{}".format(r.text)
+    
+    # RESPONSE
+    # {
+    #     "data":{
+    #         "responsecode":"2",
+    #         "batchno":"20160830",
+    #         "responsemessage":"Successful",
+    #         "transactionno":"1100000955",
+    #         "transactionIdentifier":"FLWT00296866",
+    #         "orderinfo":"OFLWT00296866",
+    #         "responsetoken":null,
+    #         "authorizeId":null,
+    #         "receiptno":"624316494359",
+    #         "otptransactionidentifier":null,
+    #         "merchtransactionreference":"TST%2FFLWT00296866",
+    #         "transactionreference":null,
+    #         "responsehtml":null
+    #     },
+    #     "status":"success"
+    # }
     
     
-    
+
     
     #
     # # PREAUTH AMOUNT ON CARD
@@ -145,7 +191,7 @@ Card
         "amount": "100",                    # Amount to debit from card
         "currency": "NGN",                  # Transaction currency
         "cardToken": "3IQROMOLDW0b3jp1082", # Token from a previously tokenized card
-        "country": "NG"                    # Country code (NG)
+        "country": "NG"                     # Country code (NG)
     }
     
     r = flw.card.preauth(data)
@@ -179,7 +225,7 @@ Card
         "currency": "NGN",               # Transaction currency
         "transactionRef": "FLW00293091", # Transaction reference from a preauthorize request
         "authorizeID": "1471629598383",  # Authorize ID from a preauthorize request
-        "country": "NG"                 # Country code (NG)
+        "country": "NG"                  # Country code (NG)
     }
     
     r = flw.card.capture(data)
@@ -213,7 +259,7 @@ Card
         "currency": "NGN",               # Transaction currency
         "transactionRef": "FLW00293091", # Transaction reference from a preauthorize request
         "authorizeID": "1471629598383",  # Authorize ID from a preauthorize request
-        "country": "NG"                 # Country code (NG)
+        "country": "NG"                  # Country code (NG)
     }
     
     r = flw.card.void(data)
@@ -247,7 +293,7 @@ Card
         "currency": "NGN",               # Transaction currency
         "transactionRef": "FLW00293091", # Transaction reference from a preauthorize request
         "authorizeID": "1471629598383",  # Authorize ID from a preauthorize request
-        "country": "NG"                 # Country code (NG)
+        "country": "NG"                  # Country code (NG)
     }
     
     r = flw.card.refund(data)

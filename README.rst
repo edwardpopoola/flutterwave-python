@@ -33,6 +33,7 @@ API Services
 - Account Number Lookup
 - Card BIN Lookup
 - Card Balance Enquiry
+- Foreign Bank Account Transfers (ACH)
 - BVN Validation
 - IP Check
 

@@ -21,7 +21,7 @@ class Card(Utils):
         expiryMonth     -> Card expiry month
         expiryYear      -> Card expiry year
         bvn             -> (Optional) User BVN, required only for authModel=BVN
-        country         -> Country code (NGN)
+        country         -> Country code (NG)
         '"""
         payload = {
             "merchantid": self.util.merchantKey,
@@ -52,7 +52,7 @@ class Card(Utils):
         responseUrl     -> Callback Url
         cardtype        -> (Optional) Card type - Diamound
         bvn             -> (Optional) User BVN, required only for authModel=BVN
-        country         -> Country code (NGN)
+        country         -> Country code (NG)
         '"""
         payload = {
             "merchantid": self.util.merchantKey,
@@ -87,7 +87,7 @@ class Card(Utils):
         customerID      -> Customer ID for tracking charge transaction
         narration       -> Transaction description
         cardtype        -> (Optional) Card type - Diamound
-        country         -> Country code (NGN)
+        country         -> Country code (NG)
         '"""
         payload = {
             "merchantid": self.util.merchantKey,
@@ -109,7 +109,7 @@ class Card(Utils):
         """Request to verify a charge transaction using the returned transaction reference
         
         transactionRef -> Transaction reference from a charge request
-        country        -> Country code (NGN)
+        country        -> Country code (NG)
         '"""
         payload = {
             "merchantid": self.util.merchantKey,
@@ -126,7 +126,7 @@ class Card(Utils):
         otp                      -> otp
         otpTransactionIdentifier -> Transaction reference from card charge / tokenize request
         cardtype                 -> (Optional) Card type - Diamound
-        country                  -> Country code (NGN)
+        country                  -> Country code (NG)
         '"""
         payload = {
             "merchantid": self.util.merchantKey,
@@ -147,7 +147,7 @@ class Card(Utils):
         amount          -> Amount to debit from card
         cardToken       -> Token from a previously tokenized card
         currency        -> Transaction currency
-        country         -> Country code (NGN)
+        country         -> Country code (NG)
         '"""
         payload = {
             "merchantid": self.util.merchantKey,
@@ -167,7 +167,7 @@ class Card(Utils):
         currency        -> Transaction currency
         transactionRef  -> Transaction reference from a preauthorize request
         authorizeID     -> Authorize ID from a preauthorize request
-        country         -> Country code (NGN)
+        country         -> Country code (NG)
         '"""
         payload = {
             "merchantid": self.util.merchantKey,
@@ -189,7 +189,7 @@ class Card(Utils):
         currency        -> Transaction currency
         transactionRef  -> Transaction reference from a preauthorize request
         authorizeID     -> Authorize ID from a preauthorize request
-        country         -> Country code (NGN)
+        country         -> Country code (NG)
         '"""
         payload = {
             "merchantid": self.util.merchantKey,
@@ -210,7 +210,7 @@ class Card(Utils):
         currency        -> Transaction currency
         transactionRef  -> Transaction reference from a preauthorize request
         authorizeID     -> Authorize ID from a preauthorize request
-        country         -> Country code (NGN)
+        country         -> Country code (NG)
         '"""
         payload = {
             "merchantid": self.util.merchantKey,
@@ -232,7 +232,7 @@ class Card(Utils):
         expiryYear      -> Card expiry year
         pin             -> Card pin
         transactionRef  -> Your tracking reference
-        country         -> Country code (NGN)
+        country         -> Country code (NG)
 
         '"""
         payload = {
@@ -256,7 +256,7 @@ class Card(Utils):
         otp                      -> Amount to debit from card
         otpTransactionIdentifier -> Transaction reference from card charge / tokenize request
         transactionRef           -> Transaction reference from a preauthorize request
-        country                  -> Country code (NGN)
+        country                  -> Country code (NG)
         '"""
         payload = {
             "merchantid": self.util.merchantKey,

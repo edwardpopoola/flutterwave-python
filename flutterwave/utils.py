@@ -39,6 +39,11 @@ class Utils(object):
         self.cardBalanceroute = "/pwc/rest/card/mvva/cardenquiry"
         self.validateCardBalanceroute = "/pwc/rest/card/mvva/cardenquiry/validate"
         self.bankListRoute = "/pwc/rest/fw/banks/"
+        self.achInstitutionsRoute = "/pwc/rest/card/mvva/institutions"
+        self.achInstitutionRoute = "/pwc/rest/card/mvva/institutions/id"
+        self.achAddUserRoute = "/pwc/rest/card/mvva/adduser"
+        self.achChargeRoute = "/pwc/rest/card/mvva/chargeach"
+        self.achWithdrawRoute = "/pwc/rest/card/mvva/withdraw"
 
         # State
         self.debug = False

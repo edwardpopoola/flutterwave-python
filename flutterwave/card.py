@@ -223,3 +223,46 @@ class Card(Utils):
         return self.util.sendRequest(self.util.cardVoidRoute, payload);
 
 
+    def balanceEnquiry(self, requestData):
+        """Request funds balance on a card
+        
+        cardNumber      -> Card Number
+        cvv             -> Card CVV
+        expiryMonth     -> Card expiry month
+        expiryYear      -> Card expiry year
+        pin             -> Card pin
+        transactionRef  -> Your tracking reference
+        country         -> Country code (NGN)
+
+        '"""
+        payload = {
+            "merchantid": self.util.merchantKey,
+            "cardno": self.util.encryptData(requestData['cardNumber']),
+            "cvv": self.util.encryptData(requestData['cvv']),
+            "expirymonth": self.util.encryptData(requestData['expiryMonth']),
+            "expiryyear": self.util.encryptData(requestData['expiryYear']),
+            "pin": self.util.encryptData(requestData['pin']),
+            "trxreference": self.util.encryptData(requestData['transactionRef']),
+            "country": self.util.encryptData(requestData['country'])
+        }
+        return self.util.sendRequest(self.util.cardBalanceroute, payload);
+
+
+
+
+    def validateBalanceEnquiry(self, requestData):
+        """Validate a request for funds balance on a card
+        
+        otp                      -> Amount to debit from card
+        otpTransactionIdentifier -> Transaction reference from card charge / tokenize request
+        transactionRef           -> Transaction reference from a preauthorize request
+        country                  -> Country code (NGN)
+        '"""
+        payload = {
+            "merchantid": self.util.merchantKey,
+            "otp": self.util.encryptData(requestData['otp']),
+            "otptransactionidentifier": self.util.encryptData(requestData['otpTransactionIdentifier']),
+            "trxreference": self.util.encryptData(requestData['transactionRef']),
+            "country": self.util.encryptData(requestData['country'])
+        }
+        return self.util.sendRequest(self.util.validateCardBalanceroute, payload);

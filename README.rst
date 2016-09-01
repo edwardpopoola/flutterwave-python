@@ -30,9 +30,10 @@ API Services
 - Charge Accounts
 - Charge Cards
 - Disburse to Accounts
-- BVN Validation
 - Account Number Lookup
 - Card BIN Lookup
+- Card Balance Enquiry
+- BVN Validation
 - IP Check
 
 ===================

@@ -312,3 +312,48 @@ Card
     #     },
     #     "status":"success"
     # }
+
+
+
+
+    #
+    # # CARD BALANCE ENQUIRY
+    #
+    from flutterwave import Flutterwave
+    flw = Flutterwave("<api_key>", "<merchant_key>", {"debug": True})
+
+    payload = {
+        "cardNumber": cardNumber,
+        "cvv": cvv,
+        "expiryMonth": expiryMonth,
+        "expiryYear": expiryYear,
+        "pin": pin,
+        "transactionRef": ref,
+        "country": country
+    }
+    
+    r = flw.card.balanceEnquiry(payload)
+    print "{}".format(r.text)
+    
+    # RESPONSE
+
+
+
+
+    #
+    # # VERIFY CARD BALANCE ENQUIRY
+    #
+    from flutterwave import Flutterwave
+    flw = Flutterwave("<api_key>", "<merchant_key>", {"debug": True})
+
+    payload = {
+        "otp": otp,
+        "otpTransactionIdentifier": otpTransactionIdentifier,
+        "transactionRef": transactionRef,
+        "country": country
+    }
+    
+    r = flw.card.validateBalanceEnquiry(payload)
+    print "{}".format(r.text)
+    
+    # RESPONSE

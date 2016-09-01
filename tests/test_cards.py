@@ -25,6 +25,8 @@ class TestCards(unittest.TestCase):
     global transactionRef
     global authorizeID
     global country
+    global pin
+    global ref
 
 
     flw = Flutterwave("tk_NabYp2XjZ6G9WwdFruzK", "tk_tdyrSMQo8a", {"debug": True})
@@ -44,6 +46,7 @@ class TestCards(unittest.TestCase):
     responseUrl = "http://127.0.0.1/your_callback_url"
     otp = "12345"
     country = "NG"
+    pin = "1234"
 
 
     def test1CardTokenize(self):
@@ -251,8 +254,46 @@ class TestCards(unittest.TestCase):
         
         # self.assertEqual(d["data"]["responsecode"], "00")
         print "{}".format(r.text)
-        
 
+    
+    def test93CardBalanceEnquiry(self):
+        print "\n---------###-- Flutterwave Card Balance Enquiry --###------------"
+        data = {
+            "cardNumber": cardNumber,
+            "cvv": cvv,
+            "expiryMonth": expiryMonth,
+            "expiryYear": expiryYear,
+            "pin": pin,
+            "transactionRef": ref,
+            "country": country
+        }
+
+        r = flw.card.balanceEnquiry(data)
+        d = json.loads(r.text)
+
+        global otpTransactionIdentifier
+        otpTransactionIdentifier = d["data"]["otpref"]
+        global transactionRef
+        transactionRef = d['data']['transactionref']
+        
+        # self.assertEqual(d["data"]["responsecode"], "00")
+        print "{}".format(r.text)
+
+
+    def test94CardRefund(self):
+        print "\n---------###-- Flutterwave Validate Card Balance Enquiry --###------------"
+        data = {
+            "otp": otp,
+            "otpTransactionIdentifier": otpTransactionIdentifier,
+            "transactionRef": transactionRef,
+            "country": country
+        }
+
+        r = flw.card.validateBalanceEnquiry(data)
+        d = json.loads(r.text)
+        
+        # self.assertEqual(d["data"]["responsecode"], "00")
+        print "{}".format(r.text)        
 
 
 if __name__ == '__main__':

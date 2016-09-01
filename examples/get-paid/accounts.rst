@@ -87,3 +87,33 @@ Account
     #   "status":"success"
     # }
 
+
+
+
+    #
+    # # ACCOUNT LOOKUP
+    #
+    from flutterwave import Flutterwave
+    flw = Flutterwave("<api_key>", "<merchant_key>", {"debug": True})
+
+    payload = {
+        "destbankcode": "044",             # Destination Bank code for the account number
+        "recipientaccount": "0690000000",  # Account number
+        "country": "NG"     			   # Country code (NGN)
+    }
+
+    r = flw.account.lookup(payload)
+    print "{}".format(r.text)
+
+    # Response
+    # {
+    #     "data":{
+    #         "responsecode":"00",
+    #         "accountnumber":"0690000000",
+    #         "accountname":"JOHN GREY",
+    #         "responsemessage":"Approved Or Completed Successfully",
+    #         "uniquereference":"FLWT00297717"
+    #     },
+    #     "status":"success"
+    # }
+

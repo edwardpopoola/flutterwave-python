@@ -15,6 +15,7 @@ class TestAccounts(unittest.TestCase):
     global otp
     global token
     global country
+    global bankcode
 
     flw = Flutterwave("tk_NabYp2XjZ6G9WwdFruzK", "tk_tdyrSMQo8a", {"debug": True})
 
@@ -24,6 +25,7 @@ class TestAccounts(unittest.TestCase):
     debitAccount = "0690000000"
     otp = "12345"
     country = "NG"
+    bankcode = "044"
 
 
     def test1AccountTokenize(self):
@@ -68,6 +70,21 @@ class TestAccounts(unittest.TestCase):
         }
 
         r = flw.account.charge(data)
+        d = json.loads(r.text)
+        
+        # self.assertEqual(d["data"]["responseCode"], "00")
+        print "{}".format(r.text)
+
+
+    def test4AccountLookup(self):
+        print "\n---------###-- Flutterwave Account Lookup --###------------"
+        data = {
+            "destBankCode": bankcode,
+            "recipientAccount": debitAccount,
+            "country": country
+        }
+
+        r = flw.account.lookup(data)
         d = json.loads(r.text)
         
         # self.assertEqual(d["data"]["responseCode"], "00")

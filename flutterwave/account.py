@@ -62,6 +62,18 @@ class Account(object):
         }
         return self.util.sendRequest(self.util.accountChargeRoute, payload);
 
-    
-    
 
+    def lookup(self, requestData):
+        """Request to lookup an account number, returns account details.
+        
+        requestData.destBankCode        -> Destination Bank code for the account number
+        requestData.recipientAccount    -> Account number
+        requestData.country             -> Country code (NGN)
+        '"""
+        payload = {
+            "merchantid": self.util.merchantKey,
+            "destbankcode": self.util.encryptData(requestData['destBankCode']),
+            "recipientaccount": self.util.encryptData(requestData['recipientAccount']),
+            "country": self.util.encryptData(requestData['country'])
+        }
+        return self.util.sendRequest(self.util.accountChargeRoute, payload);

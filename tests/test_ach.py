@@ -22,6 +22,10 @@ class TestAch(unittest.TestCase):
     country = "NG"
     email = "abc@xyz.com"
     institutionPin = "1"
+    institutionType = "wells"
+    institutionPassword = "plaid_good"
+    institutionUsername = "plaid_test"
+
 
 
 
@@ -34,13 +38,13 @@ class TestAch(unittest.TestCase):
         global institutionId
         institutionId = d["data"]["institutions"][0]['id']
         global institutionUsername
-        institutionUsername = d["data"]["institutions"][0]['credentials']['username']
+        #institutionUsername = d["data"]["institutions"][0]['credentials']['username']
         global institutionPassword
-        institutionPassword = d["data"]["institutions"][0]['credentials']['password']
+        #institutionPassword = d["data"]["institutions"][0]['credentials']['password']
         global institutionPin
         #institutionPin = d["data"]["institutions"][0]['credentials']['pin']
         global institutionType
-        institutionType = d["data"]["institutions"][0]['type']
+        #institutionType = d["data"]["institutions"][0]['type']
 
         # self.assertEqual(d["data"]["responseCode"], "00")
         print "{}".format(r.text)
@@ -61,7 +65,6 @@ class TestAch(unittest.TestCase):
         payload = {
             "username": institutionUsername,
             "password": institutionPassword,
-            "pin": institutionPin,
             "email": email,
             "institutionType": institutionType,
             "country": country

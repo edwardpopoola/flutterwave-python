@@ -8,13 +8,6 @@ class Ach(Utils):
         self.util = util
 
 
-
-        # self.achInstitutionsRoute = "/pwc/rest/card/mvva/institutions"
-        # self.achInstitutionRoute = "/pwc/rest/card/mvva/institutions/id"
-        # self.achAddUserRoute = "/pwc/rest/card/mvva/adduser"
-        # self.achChargeRoute = "/pwc/rest/card/mvva/chargeach"
-        # self.achWithdrawRoute = "/pwc/rest/card/mvva/withdraw"
-
     def listInstitutions(self, country):
         """Request a list of ACH Institutions
         
@@ -41,8 +34,9 @@ class Ach(Utils):
         return self.util.sendRequest(self.util.achInstitutionRoute, payload);
 
 
-    def addUser(self, requestData):
+    def getUserTransactions(self, requestData):
         """Request to add a user to an ACH Institution
+        Returns users Accounts and Transactions
 
         requestData.username          -> Institution username returned from institution detail - credentials
         requestData.password          -> Institution password returned from institution detail - credentials
@@ -55,24 +49,13 @@ class Ach(Utils):
             "merchantid": self.util.merchantKey,
             "username": self.util.encryptData(requestData['username']),
             "password": self.util.encryptData(requestData['password']),
-            "pin": self.util.encryptData(requestData['pin']),
             "email": self.util.encryptData(requestData['email']),
             "institution": self.util.encryptData(requestData['institutionType']),
             "country": self.util.encryptData(requestData['country'])
         }
+
+        if('pin' in requestData):
+            payload["pin"] = self.util.encryptData(requestData['pin']),
+
         return self.util.sendRequest(self.util.achAddUserRoute, payload);
-
-
-    
-    def charge(self, requestData):
-        """Request a charge as a user from an ACH Institution
-
-        country                  -> Country code (NG)
-        '"""
-
-
-    def withdraw(self, requestData):
-        """Request a withdraw as a user from an ACH Institution
-
-        country                  -> Country code (NG)
-        '"""
+        

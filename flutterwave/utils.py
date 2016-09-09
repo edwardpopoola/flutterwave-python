@@ -20,6 +20,9 @@ class Utils(object):
         # Routes
         self.ipCheckRoute = "/pwc/rest/fw/ipcheck/"
         self.binCheckRoute = "/pwc/rest/fw/check/"
+        self.disburseLinkAccountRoute = "/pwc/rest/pay/linkaccount"
+        self.disburseValidateLinkAccountRoute = "/pwc/rest/pay/linkaccount/validate"
+        self.disburseGetLinkedAccountRoute = "/pwc/rest/pay/getlinkedaccounts"
         self.disburseSendRoute = "/pwc/rest/pay/send"
         self.bvnVerifyRoute = "/pwc/rest/bvn/verify/"
         self.bvnValidateRoute = "/pwc/rest/bvn/validate/"

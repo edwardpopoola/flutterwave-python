@@ -49,9 +49,10 @@ class Card(Utils):
         currency        -> Transaction currency
         customerID      -> Customer ID for tracking charge transaction
         narration       -> Transaction description
-        responseUrl     -> Callback Url
-        cardtype        -> (Optional) Card type - Diamound
         bvn             -> (Optional) User BVN, required only for authModel=BVN
+        pin             -> (Optional) User Card PIN, required only for authModel=PIN
+        responseUrl     -> (Optional) Callback Url, required for authModel=VBVSECURECODE
+        cardtype        -> (Optional) Card type - Diamound
         country         -> Country code (NG)
         '"""
         payload = {
@@ -65,15 +66,20 @@ class Card(Utils):
             "expirymonth": self.util.encryptData(requestData['expiryMonth']),
             "expiryyear": self.util.encryptData(requestData['expiryYear']),
             "narration": self.util.encryptData(requestData['narration']),
-            "responseurl": self.util.encryptData(requestData['responseUrl']),
             "country": self.util.encryptData(requestData['country'])
         }
+
+        if('pin' in requestData):
+            payload["pin"] = self.util.encryptData(requestData['pin'])
 
         if('bvn' in requestData):
             payload["bvn"] = self.util.encryptData(requestData['bvn'])
 
+        if('responseUrl' in requestData):
+            payload["responseUrl"] = self.util.encryptData(requestData['responseUrl'])
+
         if('cardtype' in requestData):
-            payload["cardtype"] = self.util.encryptData(requestData['cardtype']),
+            payload["cardtype"] = self.util.encryptData(requestData['cardtype'])
 
         return self.util.sendRequest(self.util.cardChargeRoute, payload);
 

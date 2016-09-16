@@ -76,7 +76,7 @@ class Card(Utils):
             payload["bvn"] = self.util.encryptData(requestData['bvn'])
 
         if('responseUrl' in requestData):
-            payload["responseUrl"] = self.util.encryptData(requestData['responseUrl'])
+            payload["responseurl"] = self.util.encryptData(requestData['responseUrl'])
 
         if('cardtype' in requestData):
             payload["cardtype"] = self.util.encryptData(requestData['cardtype'])

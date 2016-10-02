@@ -31,7 +31,7 @@ class Account(object):
         requestData.ref           -> Transaction reference from the tokenize request
         requestData.otp           -> OTP to verify tokenize request
         requestData.narration     -> Transaction description
-        country                   -> Country code (NGN)
+        requestData.country       -> Country code (NGN)
         '"""
         payload = {
             "merchantid": self.util.merchantKey,
@@ -51,7 +51,7 @@ class Account(object):
         requestData.token     -> Token from previously tokenized account
         requestData.amount    -> Amount to debit from account
         requestData.narration -> Transaction description
-        country               -> Country code (NGN)
+        requestData.country   -> Country code (NGN)
         '"""
         payload = {
             "merchantid": self.util.merchantKey,
@@ -76,4 +76,68 @@ class Account(object):
             "recipientaccount": self.util.encryptData(requestData['recipientAccount']),
             "country": self.util.encryptData(requestData['country'])
         }
-        return self.util.sendRequest(self.util.accountChargeRoute, payload);
+        return self.util.sendRequest(self.util.accountLookupRoute, payload);
+
+
+    def chargeAny(self, requestData):
+        """Request to charge any Nigerian bank account
+        
+        requestData.narration      -> Transaction description
+        requestData.accountNumber  -> Customer's account number
+        requestData.bankCode       -> Customer's bank code
+        requestData.passcode       -> 12 digit string as passcode
+        requestData.amount         -> Amount to debit from account
+        requestData.currency       -> Transaction currency
+        requestData.firstName      -> Customer first name
+        requestData.lastName       -> Customer last name
+        requestData.email          -> Customer email
+        requestData.transactionRef -> Your tracking reference
+        requestData.country        -> Country code (NGN)
+        '"""
+        payload = {
+            "merchantid": self.util.merchantKey,
+            "narration": self.util.encryptData(requestData['narration']),
+            "accountnumber": self.util.encryptData(requestData['accountNumber']),
+            "bankcode": self.util.encryptData(requestData['bankCode']),
+            "passcode": self.util.encryptData(requestData['passcode']),
+            "amount": self.util.encryptData(requestData['amount']),        
+            "currency": self.util.encryptData(requestData['currency']),      
+            "firstname": self.util.encryptData(requestData['firstName']),
+            "lastname": self.util.encryptData(requestData['lastName']),
+            "email": self.util.encryptData(requestData['email']),
+            "transactionreference": self.util.encryptData(requestData['transactionRef']),
+            "country": self.util.encryptData(requestData['country'])
+        }
+        return self.util.sendRequest(self.util.accountChargeAnyRoute, payload);
+
+
+    def validateChargeAnyRef(self, requestData):
+        """Request to a chargeAny transaction using transaction reference
+        
+        requestData.transactionRef -> Transaction Ref from chargeAny request
+        requestData.otp            -> otp to verify chargeAny request
+        requestData.country        -> Country code (NGN)
+        '"""
+        payload = {
+            "merchantid": self.util.merchantKey,
+            "otp": self.util.encryptData(requestData['otp']),
+            "transactionreference": self.util.encryptData(requestData['transactionRef']),
+            "country": self.util.encryptData(requestData['country'])
+        }
+        return self.util.sendRequest(self.util.accountValidateChargeAnyRefRoute, payload);
+
+
+    def validateChargeAnyPhone(self, requestData):
+        """Request to a chargeAny transaction using phonenumber
+        
+        requestData.phoneNumber -> Customer phone used in chargeAny request
+        requestData.otp         -> otp to verify chargeAny request
+        requestData.country     -> Country code (NGN)
+        '"""
+        payload = {
+            "merchantid": self.util.merchantKey,
+            "otp": self.util.encryptData(requestData['otp']),
+            "phonenumber": self.util.encryptData(requestData['phoneNumber']),
+            "country": self.util.encryptData(requestData['country'])
+        }
+        return self.util.sendRequest(self.util.accountValidateChargeAnyPhoneRoute, payload);

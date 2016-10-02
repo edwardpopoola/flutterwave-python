@@ -34,7 +34,7 @@ setup(
 
     packages=find_packages(exclude=[]),
 
-    install_requires=['requests', 'Crypto'],
+    install_requires=['requests', 'pycrypto'],
 
     entry_points={}
 )
